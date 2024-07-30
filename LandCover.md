@@ -3,14 +3,14 @@
 ## 📝 Overview
 
 The satellite images used for training are images from Europe but in this case, the testing was done majorly on the satellite images of the Indian sub-continent. 
-The images in the data set are in .tif format (geospatial satellite images) and the labels are present in colour-coded format for each class.
-So, the layers in the labels were extracted for each class and the DBScan clustering technique was used to draw clusters. Then, bounding boxes were drawn around each cluster and the dimensions of the boxes were used to generate the labels for training in YOLO and RetinaNet models.
+The images in the data set are in `.tif` format (geospatial satellite images) and the labels are present in colour-coded format for each class.
+So, the layers in the labels were extracted for each class and the `DBScan` clustering technique was used to draw clusters. Then, bounding boxes were drawn around each cluster and the dimensions of the boxes were used to generate the labels for training in YOLO and RetinaNet models.
 
 ## 📊 Analyzing Dataset
 
 I analyzed the [data set](https://www.kaggle.com/datasets/aletbm/global-land-cover-mapping-openearthmap).
 
-Most of the satellite images obtained on a day-to-day basis are in .tif format as they allow finer details in the image as compared to .jpg or .png. And for such heavily zoomed-out images, the finer details matter a lot. Images in .tif format have transparency and can contain multiple files (layers) for a single image which is not the case in .jpg or .png images.
+Most of the satellite images obtained on a day-to-day basis are in `.tif` format as they allow finer details in the image as compared to `.jpg` or `.png`. And for such heavily zoomed-out images, the finer details matter a lot. Images in `.tif` format have transparency and can contain multiple files (layers) for a single image which is not the case in `.jpg` or `.png` images.
 
 There are 3 directories under in the data - `test`, `train`, and `val` (stands for validation)
 - **Training set:** Used to train the model.
