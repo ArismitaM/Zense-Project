@@ -103,4 +103,5 @@ Based on the results we can draw the following conclusions:
 
 So, after comparing both models, the final decision is to use the YOLO model.
 
-### 🏞️ Testing result
+## 🏞️ Testing result
+![Testing result on Village near India border](https://github.com/ArismitaM/Zense-Project/blob/main/images/b4.jpg)
