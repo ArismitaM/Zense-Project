@@ -32,6 +32,14 @@ This shows that the Bot-Sort Algorithm is faster in this case.
 However, the difference in the quality of performance was negligible.
 This is why I chose to continue with BotSort instead of ByteTrack.
 
-## 🚘 Uses of Object Tracking
+## 🚘 Terminilogies
 
- It tracks an object or multiple objects in a sequence of images or videos, both spatially and temporally. It has great potential to make our lives more convenient. Some notable use cases include autonomous cars, where successful tracking of objects in the car’s vicinity is crucial to ensuring a safe and smooth drive, and “Just Walk Out” stores, where customers can simply walk into a store, take what they need, and walk out.
+**IoU (Intersection over Union)** 
+
+This method relies entirely on the detection results rather than the image itself. Intersection over union (IoU) is used to calculate the overlap rate between two frames. When IoU reaches the threshold, the two frames are considered to belong to the same track. Since this method relies solely on IoU, it assumes that every object is detected in every frame or that the "gap" in between is small and the distance between two detections is not too large, i.e. video frame rate is high. The IOU is calculated by: IOU(a, b) = (Area(a) Area(b)) (Area(a) Area(b)) 
+
+**Deep SORT**
+
+DeepSORT mainly uses the Kalman filter and the Hungarian algorithm for object tracking. Kalman filtering is used to predict the state of tracks in the previous frame in the current frame. The Hungarian algorithm associates the tracking frame tracks in the previous frame with the detection frame detections in the current frame and performs track matching by calculating the cost matrix.
+
+
