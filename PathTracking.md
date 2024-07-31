@@ -41,5 +41,12 @@ This method relies entirely on the detection results rather than the image itsel
 **Deep SORT**
 
 DeepSORT mainly uses the Kalman filter and the Hungarian algorithm for object tracking. Kalman filtering is used to predict the state of tracks in the previous frame in the current frame. The Hungarian algorithm associates the tracking frame tracks in the previous frame with the detection frame detections in the current frame and performs track matching by calculating the cost matrix.
+![Deep SORT](https://github.com/ArismitaM/Zense-Project/blob/main/images/deep.png)
+
+## 📸 Testing Results
+
+![1](https://github.com/ArismitaM/Zense-Project/blob/main/images/Screenshot%20from%202024-07-31%2008-21-52.png)
+
+![2](https://github.com/ArismitaM/Zense-Project/blob/main/images/Screenshot%20from%202024-07-31%2008-22-22.png)
 
 
