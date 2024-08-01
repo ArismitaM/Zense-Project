@@ -1,0 +1,12 @@
+├── image1.tif
+├── image1.txt
+├── image2.jpg
+├── image2.txt
+├── classes.txt
+
+
+and if 3 classes exist like dog, cat, cow: the classes.txt file should look like below:
+
+dog
+cat
+cow

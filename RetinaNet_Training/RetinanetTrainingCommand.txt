@@ -1,0 +1,1 @@
+python keras_retinanet/bin/train.py --epoch 10 --batch-size 2 --steps 10 --snapshot-path /home/arismita/ML/RetinaNet/landcover/Snaps --tensorboard-dir /home/arismita/ML/RetinaNet/landcover/Log pascal /home/arismita/ML/RetinaNet/landcover/dataset
