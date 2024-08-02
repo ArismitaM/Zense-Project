@@ -5,6 +5,14 @@ from pathlib import Path
 from ultralytics import YOLO
 from collections import defaultdict
 from ultralytics.utils.plotting import Annotator
+import socket
+
+# Create a socket
+s = socket.socket()
+
+# Define the port in which you want to connect
+port = 5602
+s.connect(('10.5.0.1', port))
 
 # Initialize the model and other variables
 model = YOLO("yolov8n.pt")
@@ -47,6 +55,8 @@ while cap.isOpened():
             track_ids = []
 
         annotator = Annotator(frame, line_width=2, example=str(names))
+        
+        visible_path_ids = []
 
         for box, track_id, cls in zip(boxes, track_ids, clss):
             x, y, w, h = box
@@ -58,6 +68,7 @@ while cap.isOpened():
                 next_path_id += 1
 
             path_id = path_id_mapping[track_id]
+            visible_path_ids.append(path_id)
             label = f"{names[cls]} : {track_id} (PathID: {path_id})"
 
             # Check which TrackID to highlight based on elapsed time
@@ -80,6 +91,11 @@ while cap.isOpened():
             # Center circle
             cv2.circle(frame, (int(track[-1][0]), int(track[-1][1])), 5, (235, 219, 11), -1)
 
+        # Send the visible PathIDs to the server
+        path_ids_str = ",".join(map(str, visible_path_ids)) + '\r\n'
+        s.send(path_ids_str.encode()) 
+        print(s.recv(1024).decode())
+
         cv2.imshow("YOLOv8 Detection", frame)
         frame_count += 1
 
@@ -98,3 +114,6 @@ print(f"Frames per second (FPS): {fps:.2f}")
 
 cap.release()
 cv2.destroyAllWindows()
+
+# Close the connection
+s.close()
