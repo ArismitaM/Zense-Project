@@ -24,10 +24,17 @@ track_history = defaultdict(lambda: [])
 path_id_mapping = {}
 next_path_id = 0
 
+highlight_track_id_1 = 3
+highlight_track_id_2 = 7
+highlight_duration = 10  # seconds
+
 while cap.isOpened():
     success, frame = cap.read()
 
     if success:
+        current_time = time.time()
+        elapsed_time = current_time - start_time
+
         results = model.track(frame, persist=True)
 
         boxes = results[0].boxes.xywh.cpu()
@@ -52,7 +59,14 @@ while cap.isOpened():
 
             path_id = path_id_mapping[track_id]
             label = f"{names[cls]} : {track_id} (PathID: {path_id})"
-            annotator.box_label([x1, y1, x2, y2], label, (218, 100, 255))
+
+            # Check which TrackID to highlight based on elapsed time
+            if (elapsed_time <= highlight_duration and track_id == highlight_track_id_1) or (elapsed_time > highlight_duration and track_id == highlight_track_id_2):
+                color = (0, 255, 0)  # Green for highlight
+            else:
+                color = (218, 100, 255)  # Default color
+
+            annotator.box_label([x1, y1, x2, y2], label, color)
 
             # Tracking Lines plot
             track = track_history[track_id]
