@@ -6,8 +6,7 @@ from ultralytics import YOLO
 from collections import defaultdict
 from ultralytics.utils.plotting import Annotator
 
-track_history = defaultdict(lambda: [])
-
+# Initialize the model and other variables
 model = YOLO("yolov8n.pt")
 names = model.model.names
 video_path = "/home/arismita/ML/SivaUncle/testing/test_videos/video97.mp4"
@@ -19,6 +18,11 @@ cap = cv2.VideoCapture(video_path)
 
 start_time = time.time()
 frame_count = 0
+
+# Tracking history and PathID management
+track_history = defaultdict(lambda: [])
+path_id_mapping = {}
+next_path_id = 0
 
 while cap.isOpened():
     success, frame = cap.read()
@@ -40,7 +44,14 @@ while cap.isOpened():
         for box, track_id, cls in zip(boxes, track_ids, clss):
             x, y, w, h = box
             x1, y1, x2, y2 = (x - w / 2, y - h / 2, x + w / 2, y + h / 2)
-            label = str(names[cls]) + " : " + str(track_id)
+
+            # Assign a new PathID if the track_id is new
+            if track_id not in path_id_mapping:
+                path_id_mapping[track_id] = next_path_id
+                next_path_id += 1
+
+            path_id = path_id_mapping[track_id]
+            label = f"{names[cls]} : {track_id} (PathID: {path_id})"
             annotator.box_label([x1, y1, x2, y2], label, (218, 100, 255))
 
             # Tracking Lines plot
