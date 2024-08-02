@@ -10,7 +10,7 @@ import socket
 # Create a socket
 s = socket.socket()
 
-# Define the port in which you want to connect
+# Define the port to connect to
 port = 5602
 s.connect(('10.5.0.1', port))
 
@@ -24,6 +24,15 @@ if not Path(video_path).exists():
 
 cap = cv2.VideoCapture(video_path)
 
+# Command: gst-launch-1.0 -v filesrc location=/home/nvidia/FaceIT.mp4 ! qtdemux ! h264parse ! rtph264pay pt=96 config-interval=1 ssrc=10000000 mtu=1400 ! udpsink host=127.0.0.1 port=5602
+gst_str_rtp = "appsrc ! videoconvert ! x264enc tune=zerolatency bitrate=500 speed-preset=superfast ! rtph264pay ! udpsink host=127.0.0.1 port=5602"
+gst_str_rtp = "qtdemux ! h264parse ! rtph264pay pt=96 config-interval=1 ssrc=10000000 mtu=1400 ! udpsink host=127.0.0.1 port=5602"
+frame_width = int(cap.get(3))
+frame_height = int(cap.get(4))
+
+# Create videowriter as a SHM sink
+out = cv2.VideoWriter(gst_str_rtp, 0, 30, (frame_width, frame_height), True)
+
 start_time = time.time()
 frame_count = 0
 
@@ -32,9 +41,10 @@ track_history = defaultdict(lambda: [])
 path_id_mapping = {}
 next_path_id = 0
 
-highlight_track_id_1 = 3
-highlight_track_id_2 = 7
+highlight_track_id = None
 highlight_duration = 10  # seconds
+
+previous_visible_path_ids = set()
 
 while cap.isOpened():
     success, frame = cap.read()
@@ -71,8 +81,8 @@ while cap.isOpened():
             visible_path_ids.append(path_id)
             label = f"{names[cls]} : {track_id} (PathID: {path_id})"
 
-            # Check which TrackID to highlight based on elapsed time
-            if (elapsed_time <= highlight_duration and track_id == highlight_track_id_1) or (elapsed_time > highlight_duration and track_id == highlight_track_id_2):
+            # Check which TrackID to highlight
+            if highlight_track_id is not None and track_id == highlight_track_id:
                 color = (0, 255, 0)  # Green for highlight
             else:
                 color = (218, 100, 255)  # Default color
@@ -91,16 +101,26 @@ while cap.isOpened():
             # Center circle
             cv2.circle(frame, (int(track[-1][0]), int(track[-1][1])), 5, (235, 219, 11), -1)
 
-        # Send the visible PathIDs to the server
-        path_ids_str = ",".join(map(str, visible_path_ids)) + '\r\n'
-        s.send(path_ids_str.encode()) 
-        print(s.recv(1024).decode())
+        current_visible_path_ids = set(visible_path_ids)
+        if current_visible_path_ids != previous_visible_path_ids:
+            path_ids_str = ",".join(map(str, current_visible_path_ids)) + '\r\n'
+            s.send(path_ids_str.encode())
+            previous_visible_path_ids = current_visible_path_ids
 
-        cv2.imshow("YOLOv8 Detection", frame)
+            # Receive data from the server
+            try:
+                data = s.recv(1024).decode()
+                if data:
+                    highlight_track_id = int(data.strip())
+            except socket.timeout:
+                pass  # Handle timeout if needed
+
+        # cv2.imshow("YOLOv8 Detection", frame)
+        out.write(frame)
         frame_count += 1
 
-        if cv2.waitKey(1) & 0xFF == ord("q"):
-            break
+        #if cv2.waitKey(1) & 0xFF == ord("q"):
+            # break
     else:
         break
 
@@ -108,12 +128,11 @@ end_time = time.time()
 elapsed_time = end_time - start_time
 fps = frame_count / elapsed_time
 
-print("\n")
 print(f"Processed {frame_count} frames in {elapsed_time:.2f} seconds.")
 print(f"Frames per second (FPS): {fps:.2f}")
 
 cap.release()
-cv2.destroyAllWindows()
+# cv2.destroyAllWindows()
 
 # Close the connection
 s.close()
