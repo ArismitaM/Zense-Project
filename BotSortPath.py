@@ -6,6 +6,7 @@ from ultralytics import YOLO
 from collections import defaultdict
 from ultralytics.utils.plotting import Annotator
 import socket
+import threading
 
 # Create a socket
 s = socket.socket()
@@ -41,10 +42,26 @@ track_history = defaultdict(lambda: [])
 path_id_mapping = {}
 next_path_id = 0
 
-highlight_track_id = None
+# Global variable for highlighted path ID
+highlight_path_id = None
 highlight_duration = 10  # seconds
 
 previous_visible_path_ids = set()
+
+def receive_data():
+    global highlight_path_id
+    while True:
+        try:
+            data = s.recv(1024).decode()
+            if data:
+                highlight_path_id = int(data.strip())
+        except socket.timeout:
+            pass  # Handle timeout if needed
+
+# Start the thread for receiving data from the server
+receive_thread = threading.Thread(target=receive_data)
+receive_thread.daemon = True
+receive_thread.start()
 
 while cap.isOpened():
     success, frame = cap.read()
@@ -81,8 +98,8 @@ while cap.isOpened():
             visible_path_ids.append(path_id)
             label = f"{names[cls]} : {track_id} (PathID: {path_id})"
 
-            # Check which TrackID to highlight
-            if highlight_track_id is not None and track_id == highlight_track_id:
+            # Check which PathID to highlight
+            if highlight_path_id is not None and path_id == highlight_path_id:
                 color = (0, 255, 0)  # Green for highlight
             else:
                 color = (218, 100, 255)  # Default color
@@ -106,14 +123,6 @@ while cap.isOpened():
             path_ids_str = ",".join(map(str, current_visible_path_ids)) + '\r\n'
             s.send(path_ids_str.encode())
             previous_visible_path_ids = current_visible_path_ids
-
-            # Receive data from the server
-            try:
-                data = s.recv(1024).decode()
-                if data:
-                    highlight_track_id = int(data.strip())
-            except socket.timeout:
-                pass  # Handle timeout if needed
 
         # cv2.imshow("YOLOv8 Detection", frame)
         out.write(frame)
