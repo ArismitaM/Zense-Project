@@ -31,8 +31,8 @@ Some of the problems the Indian army faced were:
 
 ## 📊 Technical Aspects
 A detailed explanation of the technologies used in this project is as follows:
-1. 
-2. 
+1. [Land Cover](https://github.com/ArismitaM/Zense-Project/blob/main/LandCover.md)
+2. [Path Tracking](https://github.com/ArismitaM/Zense-Project/blob/main/PathTrack.md) 
 
 ## 📝 Challenges Faced
 - This was my first time dealing with .tif images (satellite images are usually in this format). It took some time to figure out how to do clustering, extracting layers, and draw bounding boxes.
