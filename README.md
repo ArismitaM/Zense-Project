@@ -8,7 +8,7 @@ Using ML to develop a reliable assistant for the Indian army.
 
 On December 29, 2018, at around 1630 hours, a significant incident occurred along the Line of Control (LoC) in the Kashmir region involving the Indian Army's 8 Bihar Regiment. The incident began when an Indian Army patrol detected suspicious movements near their post in the Nowshera sector, an area known for previous Border Action Team (BAT) operations by Pakistani forces. BAT typically comprises Pakistani special forces and terrorists trained to carry out surprise attacks, overrun Indian posts, and behead soldiers. 
 
-Only 1 soldier from the Indian army (Sepoy Karmadeo) had noticed this suspicious movement and the terrorists were too close to let the other Indian men in the surrounding bunkers know. The terrorists came from a path that was frequented by the Indian army. It is hard to patrol every path every day and the terrorists used this to their advantage and moved along that path soon after the last patrol there.
+Only one soldier from the Indian army (Sepoy Karmadeo) had noticed this suspicious movement and the terrorists were too close to let the other Indian men in the surrounding bunkers know. The terrorists came from a path that was frequented by the Indian army. It is hard to patrol every path every day and the terrorists used this to their advantage and moved along that path soon after the last patrol there.
 
 The terrorists also made sure to block the routes from other Indian posts leading to the 8 Bihar Regiment. While 5 Pakistani men were busy tackling a soul Indian soldier, the Pakistani men received cover fire from various troops stationed uphill.
 
@@ -21,7 +21,7 @@ Some of the problems the Indian army faced were:
 - The number of people they were dealing with in the opponent force. (By the time they could estimate the number of terrorists, they were harmfully close)
 
 **Possible solutions**
--  The Pakistani forces who provided cover fire to the combat team had settlements built on the hilltop. Satellite imagery can help detect the type of landscape and any changes that happen over-time on the landscape to alert forces.
+-  The Pakistani forces who provided cover fire to the combat team had settlements built on the hilltop. Satellite imagery can help detect the type of landscape and any changes that happen over time on the landscape to alert forces.
 - It is hard to manually patrol and keep vigil on all the routes at all points in time. So, it may be easier to deploy drones which have live camera relays. This way the machine can detect the number of people on a site faster and also make the army aware of the path the forces are taking.
 
 ## 📌 Objectives
