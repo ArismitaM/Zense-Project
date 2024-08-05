@@ -26,7 +26,7 @@ Some of the problems the Indian army faced were:
 
 ## 📌 Objectives
 
-- This project uses satellite images to detect the land cover in an area (In this project it is used to detect the suspicious settlements in an area). 
+- This project uses satellite images to detect the land cover in an area (In this project it is used to detect suspicious settlements in an area). 
 - This also uses the BotSort algorithm to detect people and trace the path they take.
 
 ## 📊 Technical Aspects
