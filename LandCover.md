@@ -105,3 +105,7 @@ So, after comparing both models, the final decision is to use the YOLO model.
 
 ## 🏞️ Testing result
 ![Testing result on Village near India border](https://github.com/ArismitaM/Zense-Project/blob/main/images/b4.jpg)
+
+### Image sources (used for testing):
+1. [Click here](https://www.thehansindia.com/news/national/china-has-built-a-fully-functional-village-in-doklam-754410)
+2. [Click here](https://timesofindia.indiatimes.com/india/second-chinese-village-along-arunachal-border-sat-images/articleshow/87788526.cms)
