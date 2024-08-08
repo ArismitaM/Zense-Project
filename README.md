@@ -2,7 +2,7 @@
 
 ## 💡 Problem Statement
 
-Using ML to develop a reliable assistant for the Indian army.
+Using ML to develop an assistant to identify suspicious adversary build-ups in border areas and pre-warn about the strength of a prospective raiding party of the adversary.
 
 ## 🎖 Background
 
@@ -22,7 +22,7 @@ Some of the problems the Indian army faced were:
 
 **Possible solutions**
 -  The Pakistani forces who provided cover fire to the combat team had settlements built on the hilltop. Satellite imagery can help detect the type of landscape and any changes that happen over time on the landscape to alert forces.
-- It is hard to manually patrol and keep vigil on all the routes at all points in time. So, it may be easier to deploy drones which have live camera relays. This way the machine can detect the number of people on a site faster and also make the army aware of the path the forces are taking.
+- It is hard to manually patrol and keep vigil on all the routes at all points in time. It may be easier to deploy drones that have live camera relays. This way the machine can detect the number of people on a site faster and also make the army aware of the path the forces are taking.
 
 ## 📌 Objectives
 
@@ -35,7 +35,7 @@ A detailed explanation of the technologies used in this project is as follows:
 2. [Path Tracking](https://github.com/ArismitaM/Zense-Project/blob/main/PathTrack.md) 
 
 ## 📝 Challenges Faced
-- This was my first time dealing with .tif images (satellite images are usually in this format). It took some time to figure out how to do clustering, extracting layers, and draw bounding boxes.
+- This was my first time dealing with .tif images (satellite images are usually in this format). It took some time to figure out how to do clustering, extract layers, and draw bounding boxes.
 - I could obtain satellite images of Europe and not the Indian subcontinent for the training process.  
 - The GPU in my machine does not have enough memory required to train the RetinaNet model, so I had to switch to training with CPU for RetinaNet.
 - The BotSort and ByteTrack algorithms were close competitors in theory but gave slightly different outputs when run on the machine.
@@ -49,6 +49,6 @@ This shows that this type of tension in the border regions is of serious concern
 
 ## 📈 Further Improvements
 - This project will yield better results if the machine can train longer on more powerful computers (instead of on my machine which has limited capability) and have satellite images available of the Indian subcontinent.
-- The path tracking part of the project can be extended to gait recognition. It is easy of disguise someone but hard to change the way a person walks. This will help to alert and detect specific people in disguise. 
+- The path tracking part of the project can be extended to gait recognition. It is easy to disguise someone but hard to change the way a person walks. This will help to alert and detect specific people in disguise. 
 
 ## Demo video
