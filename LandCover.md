@@ -67,6 +67,8 @@ The YOLO format labels are then converted into Pascal VOC format for RetinaNet t
 
  2. **RetinaNet:** RetinaNet is chosen for land cover classification due to its high accuracy and robustness. It is designed for real-time classification, making it ideal for applications requiring precise results. RetinaNet's Focal Loss function effectively handles class imbalance, ensuring accurate classification of diverse land cover types. Its deep learning architecture captures intricate spatial patterns, enhancing performance and reliability.
 
+[Click here](https://github.com/ArismitaM/Zense-Project/blob/main/requirements_LandCover.txt) to get the requirements.txt file.
+
 ## 🧮  Exploratory Data Analysis Results
 
 #### YOLOv5 Model:
