@@ -4,6 +4,8 @@
 
 This part of the project is used to trace people's paths. YOLOv8 has been used for detecting people and algorithms like BotSort and ByteTrack have been used for path tracking.
 
+[Click here](https://github.com/ArismitaM/Zense-Project/blob/main/requirements_PathTrack.txt) to get the requirements.txt file.
+
 ## 🪜 Steps involved in Tracking
 
 - **Object Detection**
