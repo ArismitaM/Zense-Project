@@ -2,7 +2,7 @@
 
 ## 📝 Overview
 
-This part of the project is used to trace people's paths. YOLOv8 has been used for detecting people and algorithms like BotSort and ByteTrack have been used for path tracking.
+This part of the project is used to trace people's paths. YOLOv8 has been used for detecting people and algorithms like BotSort and ByteTrack have been used for path tracking. I have also used socket programming and threading while coding this. Threading helps maintain the video flow without causing it to pause while waiting for input, as the time taken for the input depends on the user, and there might be cases where the user does not input anything.
 
 [Click here](https://github.com/ArismitaM/Zense-Project/blob/main/requirements_PathTrack.txt) to get the requirements.txt file.
 
@@ -38,7 +38,7 @@ This is why I chose to continue with BotSort instead of ByteTrack.
 
 **IoU (Intersection over Union)** 
 
-This method relies entirely on the detection results rather than the image itself. Intersection over union (IoU) is used to calculate the overlap rate between two frames. When IoU reaches the threshold, the two frames are considered to belong to the same track. Since this method relies solely on IoU, it assumes that every object is detected in every frame or that the "gap" in between is small and the distance between two detections is not too large, i.e. video frame rate is high. The IOU is calculated by: IOU(a, b) = (Area(a) Area(b)) (Area(a) Area(b)) 
+This method relies entirely on the detection results rather than the image itself. Intersection over union (IoU) is used to calculate the overlap rate between two frames. When IoU reaches the threshold, the two frames are considered to belong to the same track. Since this method relies solely on IoU, it assumes that every object is detected in every frame or that the "gap" in between is small and the distance between two detections is not too large, i.e., the video frame rate is high. The IOU is calculated by: IOU(a, b) = (Area(a) Area(b)) (Area(a) Area(b)) 
 
 **Deep SORT**
 
