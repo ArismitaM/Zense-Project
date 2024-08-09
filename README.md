@@ -52,3 +52,4 @@ This shows that this type of tension in the border regions is of serious concern
 - The path tracking part of the project can be extended to gait recognition. It is easy to disguise someone but hard to change the way a person walks. This will help to alert and detect specific people in disguise. 
 
 ## Demo video
+[Click here](https://drive.google.com/file/d/1nr9XY9uhNnSqu9dKkRrmNMWIKvcJHHEn/view?usp=sharing)
